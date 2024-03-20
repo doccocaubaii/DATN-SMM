@@ -1,15 +1,19 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {Routes} from '@angular/router';
 
-import { FullComponent } from './layouts/full/full.component';
+import {FullComponent} from './layouts/full/full.component';
 import {LoginComponent} from "./pages/login/login.component";
+import {ProfileComponent} from "./pages/profile/profile.component";
 
 export const Approutes: Routes = [
   {
     path: '',
     component: FullComponent,
     children: [
-      { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+      {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
+      {
+        path: 'profile',
+        component: ProfileComponent,
+      },
       {
         path: 'dashboard',
         loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)

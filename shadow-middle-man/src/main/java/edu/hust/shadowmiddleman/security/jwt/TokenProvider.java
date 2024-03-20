@@ -55,9 +55,21 @@ public class TokenProvider {
                 .compact();
     }
 
+    public String generateToken(String username, String authorities) {
+        Date now = new Date();
+        Date expiryDate = new Date(now.getTime() + jwtExpirationInMs);
+        return Jwts.builder()
+                .subject(username)
+                .claim("auth", authorities)
+                .issuedAt(new Date())
+                .expiration(expiryDate)
+                .signWith(getSigningKey())
+                .compact();
+    }
+
     public String getUsernameFromJWT(String token) {
         Claims claims = this.jwtParser
-                .parseSignedClaims (token)
+                .parseSignedClaims(token)
                 .getPayload();
 
         return claims.getSubject();
@@ -97,14 +109,15 @@ public class TokenProvider {
         } catch (IllegalArgumentException ex) {
             // JWT claims string is empty
             System.out.println("JWT claims string is empty");
-        } catch (JwtException  ex ){
+        } catch (JwtException ex) {
             log.error(ex.getMessage(), (Object) ex.getStackTrace());
         }
         return false;
     }
 
     private SecretKey getSigningKey() {
-        byte[] keyBytes = this.jwtSecret.getBytes(StandardCharsets.UTF_8);;
+        byte[] keyBytes = this.jwtSecret.getBytes(StandardCharsets.UTF_8);
+        ;
         return new SecretKeySpec(keyBytes, "HmacSHA256");
     }
 }

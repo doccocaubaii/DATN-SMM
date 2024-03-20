@@ -2,9 +2,13 @@ package edu.hust.shadowmiddleman.dto.account;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class LoginDTO {
 
     @NotNull(message = "Không được bỏ trống")
@@ -15,6 +19,11 @@ public class LoginDTO {
     private String password;
 
     private boolean rememberMe;
+
+    public LoginDTO(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 
     // prettier-ignore
     @Override

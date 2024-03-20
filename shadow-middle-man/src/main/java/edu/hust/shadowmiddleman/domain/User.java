@@ -1,12 +1,14 @@
 package edu.hust.shadowmiddleman.domain;
 
-import edu.hust.shadowmiddleman.dto.account.RegisterDTO;
+import edu.hust.shadowmiddleman.common.enumpackage.RoleEnum;
 import jakarta.persistence.*;
+import lombok.Data;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
+@Data
 public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -26,99 +28,20 @@ public class User {
     private String accountNumber;
     @Basic
     @Column(name = "balance")
-    private Double balance;
+    private Double balance = 0d;
     @Basic
+    @Enumerated(EnumType.STRING)
     @Column(name = "role")
-    private String role;
+    private RoleEnum role = RoleEnum.SALE;
     @Basic
     @Column(name = "password")
     private String password;
     @Basic
     @Column(name = "status")
-    private Integer status; // 0 là không hoạt động, 1 là hoạt động
+    private Integer status = 1; // 0 là không hoạt động, 1 là hoạt động
     @Basic
     @Column(name = "created_at")
-    private Timestamp createdAt;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getFullname() {
-        return fullname;
-    }
-
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
-    }
-
-    public String getAvatarUrl() {
-        return avatarUrl;
-    }
-
-    public void setAvatarUrl(String avatarUrl) {
-        this.avatarUrl = avatarUrl;
-    }
-
-    public String getAccountNumber() {
-        return accountNumber;
-    }
-
-    public void setAccountNumber(String accountNumber) {
-        this.accountNumber = accountNumber;
-    }
-
-    public Double getBalance() {
-        return balance;
-    }
-
-    public void setBalance(Double balance) {
-        this.balance = balance;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public Timestamp getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
-    }
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     @Override
     public boolean equals(Object o) {

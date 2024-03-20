@@ -1,28 +1,27 @@
 package edu.hust.shadowmiddleman.dto.account;
 
 import edu.hust.shadowmiddleman.common.enumpackage.RoleEnum;
-import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
-public class RegisterDTO {
+@NoArgsConstructor
+@AllArgsConstructor
+public class UserDTO {
     private Integer id;
 
-    @NotNull
     private String username;
 
-    @NotNull
     private String fullname;
 
     private String avatarUrl;
 
     private String accountNumber;
 
-    @NotNull
     private RoleEnum role;
 
-    @NotNull
-    private String password;
-
     private Integer status;
+
+    private String jwt;
 }

@@ -16,15 +16,16 @@ import java.io.IOException;
 @Log4j2
 public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
-  @Autowired
-  @Qualifier("handlerExceptionResolver")
-  private HandlerExceptionResolver resolver;
+    @Autowired
+    @Qualifier("handlerExceptionResolver")
+    private HandlerExceptionResolver resolver;
 
-  @Override
-  public void commence(HttpServletRequest httpServletRequest,
-                       HttpServletResponse httpServletResponse,
-                       AuthenticationException e) throws IOException {
-    log.error("Responding with unauthorized error. Message - {}", e.getMessage());
-    httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, e.getMessage());
-  }
+    @Override
+    public void commence(HttpServletRequest request,
+                         HttpServletResponse response,
+                         AuthenticationException e) throws IOException {
+        log.error("Responding with unauthorized error. Message - {}", e.getMessage());
+//    httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, e.getMessage());
+        resolver.resolveException(request, response, null, e);
+    }
 }
