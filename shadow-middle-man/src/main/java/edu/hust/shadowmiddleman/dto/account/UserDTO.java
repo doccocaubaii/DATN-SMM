@@ -24,4 +24,6 @@ public class UserDTO {
     private Integer status;
 
     private String jwt;
+
+    private Double balance;
 }

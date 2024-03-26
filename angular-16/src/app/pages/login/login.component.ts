@@ -30,7 +30,7 @@ export class LoginComponent {
       this.loginService.signIn(this.loginDto).subscribe(
         res => {
           // this.toast.success(res.message);
-          this.sessionService.setItem('principle', res.data);
+          this.sessionService.login(res.data);
           this.router.navigate(['/dashboard']);
         }
       );
@@ -64,8 +64,9 @@ export class LoginComponent {
     if (this.validate()) {
       this.loginService.signUp(this.loginDto).subscribe(
         (res) => {
-          sessionStorage.setItem('principle', res.data);
+          this.sessionService.login(res.data);
           this.toast.success(res.message);
+          this.router.navigate(['/profile']);
         }
       );
     }

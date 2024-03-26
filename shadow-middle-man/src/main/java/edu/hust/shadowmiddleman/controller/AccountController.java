@@ -2,6 +2,7 @@ package edu.hust.shadowmiddleman.controller;
 
 import edu.hust.shadowmiddleman.common.Constant;
 import edu.hust.shadowmiddleman.dto.account.LoginDTO;
+import edu.hust.shadowmiddleman.dto.account.ProfileDTO;
 import edu.hust.shadowmiddleman.dto.account.RegisterDTO;
 import edu.hust.shadowmiddleman.dto.common.ResponseDTO;
 import edu.hust.shadowmiddleman.service.AccountService;
@@ -43,6 +44,30 @@ public class AccountController {
                                 .code(Constant.HTTP_OK)
                                 .message(Constant.RESPONSE.MESSAGE.OK)
                                 .data(accountService.register(registerDTO))
+                                .build());
+    }
+
+    @SneakyThrows
+    @GetMapping("/account/getProfile")
+    public ResponseEntity<ResponseDTO> getProfile() {
+        return ResponseEntity.ok()
+                .body(
+                        ResponseDTO.builder()
+                                .code(Constant.HTTP_OK)
+                                .message(Constant.RESPONSE.MESSAGE.OK)
+                                .data(accountService.getProfile())
+                                .build());
+    }
+
+    @SneakyThrows
+    @PostMapping("/account/editProfile")
+    public ResponseEntity<ResponseDTO> editProfile(@RequestBody ProfileDTO dto) {
+        return ResponseEntity.ok()
+                .body(
+                        ResponseDTO.builder()
+                                .code(Constant.HTTP_OK)
+                                .message(Constant.RESPONSE.MESSAGE.OK)
+                                .data(accountService.editProfile(dto))
                                 .build());
     }
 

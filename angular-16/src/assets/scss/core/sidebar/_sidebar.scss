@@ -10,7 +10,7 @@ Main sidebar
 ******************/
 
 .left-sidebar {
-  position: absolute;
+  position: fixed;
   width: $sidebar-width-full;
   height: 100%;
   top: 0px;
@@ -29,6 +29,7 @@ sidebar navigation
   ul {
     .sidebar-item {
       width: $sidebar-width-full;
+
       .sidebar-link {
         color: $sidebar-text;
         padding: $sidebar-link-padding;
@@ -37,6 +38,7 @@ sidebar navigation
         align-items: center;
         line-height: 25px;
         opacity: 0.6;
+
         i {
           font-style: normal;
           width: 35px;
@@ -47,14 +49,17 @@ sidebar navigation
           align-items: center;
           justify-content: center;
         }
+
         &.active,
         &:hover {
           opacity: 1;
+
           .feather {
             color: $white;
           }
         }
       }
+
       &.active > .sidebar-link {
         /*background: rgba(0, 0, 0, 0.04);*/
         opacity: 1;
@@ -70,11 +75,13 @@ sidebar navigation
   ul {
     margin: 0px;
     padding: 0px;
+
     li {
       list-style: none;
     }
   }
 }
+
 .collapse.in {
   display: block;
 }

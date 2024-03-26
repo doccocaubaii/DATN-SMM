@@ -23,4 +23,14 @@ export class SessionStorageService {
   removeItem(key: string): void {
     sessionStorage.removeItem(key);
   }
+
+  clear(): void {
+    this.removeItem('principle');
+    this.removeItem('jwt');
+  }
+
+  login(data: any) {
+    this.setItem('principle', data);
+    this.setItem('jwt', data.jwt);
+  }
 }
